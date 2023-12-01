@@ -32,7 +32,7 @@ function moveBalls(section, arr, x, y) {
     section.addEventListener('mouseleave', () => { stopBalls(section, arr) }, { once: true });
 }
 
-// Создаём функцию, которая остановит регулярный перезапуск moveOnce. - Функции clearInterval() передаём аргументом идентификатор регулярного перезапуска функции - идентификатором, который возвращает функция setInterval() - мы его сохранили в переменную mbId
+// Создаём функцию, которая остановит регулярный перезапуск moveOnce. - Функции clearInterval() передаём аргументом идентификатор регулярного перезапуска функции - идентификатор, который возвращает функция setInterval() - мы его сохранили в переменную mbId
 function stopBalls(section, arr) {
     // прервали повторение выполнения функции перемещения элементов moveOnce
     clearInterval(mbId);
@@ -70,8 +70,8 @@ function stopBalls(section, arr) {
     section.addEventListener('mouseenter', () => { moveBalls(section, arr, 80, 40) }, { once: true });
 }
 
-// вешаем первоначальный (после загрузки страницы) листнер на старт анимации. Благодаря опции  { once: true }  - обработчик сработает один раз, а затем автоматически удалится. (убрать листнер  с функцией с аргументами  через removeEventListener - не получается, внутрь безымянной функции-обёртки класть не стал)
-video.addEventListener('mouseenter', () => { moveBalls(video, vballs, 80, 40) }, { once: true });
+// // вешаем первоначальный (после загрузки страницы) листнер на старт анимации. Благодаря опции  { once: true }  - обработчик сработает один раз, а затем автоматически удалится. (убрать листнер  с функцией с аргументами  через removeEventListener - не получается, внутрь безымянной функции-обёртки класть не стал)
+// video.addEventListener('mouseenter', () => { moveBalls(video, vballs, 80, 40) }, { once: true });
 
 // не экономя память - просто вешаем листнеры
 // video.addEventListener('mouseenter', () => { moveBalls(vballs, 80, 40) });
@@ -83,7 +83,7 @@ video.addEventListener('mouseenter', () => { moveBalls(video, vballs, 80, 40) },
 const video2 = document.getElementById('video2');
 const vballsYtb = document.querySelectorAll('.video__ball_ytb');
 
-video2.addEventListener('mouseenter', () => { moveBalls(video2, vballsYtb, 80, 40) }, { once: true })
+// video2.addEventListener('mouseenter', () => { moveBalls(video2, vballsYtb, 80, 40) }, { once: true })
 
 
 
@@ -240,41 +240,80 @@ modal.onclick = (event) => {
 //     // }
 // }
 
-// if (window.matchMedia('(hover: none)').matches) {
+if (window.matchMedia('(hover: none)').matches || window.matchMedia('(pointer: coarse)').matches) {
 
-video.currentBalls = vballs;
-// console.log(video.currentBalls);
-video2.currentBalls = vballsYtb;
-// console.log(video2.currentBalls);
+    video.currentBalls = vballs;
+    // console.log(video.currentBalls);
+    video2.currentBalls = vballsYtb;
+    // console.log(video2.currentBalls);
 
-const observerMob = new IntersectionObserver(
-    function (entries) {
-        entries.forEach((entry) => {
-            if (entry.isIntersecting === true) {
+    const observerMob = new IntersectionObserver(
+        function (entries) {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting === true) {
 
-                // глючило и запускало moveBalls когда секция уже была в области видимости - чтобы точно избежать такого поведения - оставляем принудительную остановку анимации 
-                stopBalls(entry.target, entry.target.currentBalls)
-                console.log(entry.target);
-                console.log('stopBalls()');
-                // чтобы успело примениться transition к шарикам (entry.target.currentBalls)
-                setTimeout(() => {
-                    moveBalls(entry.target, entry.target.currentBalls, 80, 40);
-                    // Убрать вешание листнеров в конце функций;  и вешать их  только если есть ховер
+                    // глючило и запускало moveBalls когда секция уже была в области видимости - чтобы точно избежать такого поведения - оставляем принудительную остановку анимации 
+                    // stopBalls(entry.target, entry.target.currentBalls)
+                    // console.log(entry.target);
+                    // console.log('stopBalls()');
+                    // чтобы успело примениться transition к шарикам (entry.target.currentBalls)
+                    setTimeout(() => {
+                        moveOnce(entry.target.currentBalls, 80, 40);
+                        mbId = setInterval(moveOnce, 4000, entry.target.currentBalls, 80, 40);
+
+                        console.log(entry.target);
+                        console.log('start moveBalls()');
+                    }, 33);
+
+                } else {
+
+                    // stopBalls(entry.target, entry.target.currentBalls)
+
+                    // прервали повторение выполнения функции перемещения элементов moveOnce
+                    clearInterval(mbId);
+                    console.log("stopBalls runs and clearInterval(mbId)")
+
+                    for (let el of entry.target.currentBalls) {
+                        //  зададём продолжительность transition 0.5s для  элементов - чтобы плавно но быстро вернуть их в начальное место.
+                        el.style.transition = 'all 0.5s linear';
+
+                        //  для каждой ширины экрана возвращаем начальные свойства transform  для элементов
+                        if (window.innerWidth < 425) {
+                            el.style.transform = 'translate(0, 0) scale(0.35)';
+                        } else {
+                            if (window.innerWidth < 768) {
+                                el.style.transform = 'translate(0, 0) scale(0.5)';
+                            } else {
+                                if (window.innerWidth < 1024) {
+                                    el.style.transform = 'translate(0, 0) scale(0.75)';
+                                } else {
+
+                                    el.style.transform = 'translate(0, 0)';
+                                }
+                            }
+                        }
+                        // после выполнения остального js кода - возвращаем изначальное значение transition = 12s для всех элементов - чтоб при следующих запусках перемещений элементы двигались с изначально заданной скоростью.
+                        //  Хотя transition =  12s присваивается элементам ещё в момент анимации с transition = 0.5s  - анимация всё равно продолжается время 0.5s - как это было указано во время начала анимации
+                        setTimeout(
+                            () => {
+                                el.style.transition = 'all 12s linear';
+                            }
+                            , 16)
+                    }
+
                     console.log(entry.target);
-                    console.log('start moveBalls()');
-                }, 33);
-
-            } else {
-                stopBalls(entry.target, entry.target.currentBalls)
-                console.log(entry.target);
-                console.log('stopBalls()');
+                    console.log('stopBalls()');
+                }
             }
+            )
         }
-        )
-    }
-)
+    )
 
 
-observerMob.observe(video);
-observerMob.observe(video2);
-// }
+    observerMob.observe(video);
+    observerMob.observe(video2);
+}
+else { // вешаем первоначальный (после загрузки страницы) листнер на старт анимации. Благодаря опции  { once: true }  - обработчик сработает один раз, а затем автоматически удалится. (убрать листнер  с функцией с аргументами  через removeEventListener - не получается, внутрь безымянной функции-обёртки класть не стал)
+    video.addEventListener('mouseenter', () => { moveBalls(video, vballs, 80, 40) }, { once: true });
+    video2.addEventListener('mouseenter', () => { moveBalls(video2, vballsYtb, 80, 40) }, { once: true });
+}
