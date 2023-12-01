@@ -6,15 +6,15 @@ if (window.scrollY > window.innerHeight) {
 
 document.onscroll = (event) => {
     // console.log(event);
-    console.log(window.scrollY);
+    // console.log(window.scrollY);
 
     // if (window.scrollY > 1000) {
-    if (window.scrollY < window.innerHeight) {
+    if (window.scrollY < (1.2 * window.innerHeight)) {
         // btnUp.style.display = 'none';
         btnUp.style.visibility = 'hidden';
         btnUp.style.opacity = 0;
     } else {
-        console.log(window.innerHeight);
+        // console.log(window.innerHeight);
         // btnUp.style.display = 'block';
         btnUp.style.visibility = 'visible';
         btnUp.style.opacity = 0.7;

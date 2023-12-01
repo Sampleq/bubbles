@@ -206,3 +206,75 @@ modal.onclick = (event) => {
     }
 
 }
+
+
+// стартуем движение шаров при попадании в область видимости на мобильных
+
+// https://stackoverflow.com/questions/56324813/how-to-detect-touch-device-in-2019
+
+// function isTouchDevice() {
+//     return (('ontouchstart' in window) ||
+//        (navigator.maxTouchPoints > 0) ||
+//        (navigator.msMaxTouchPoints > 0));
+//   }
+
+// // .window перед matchMedia() - не обязательно
+// if (matchMedia('(hover: hover)').matches) {
+//     console.log("matchMedia('(hover: hover)')");
+// }
+
+// if (window.matchMedia('(pointer: coarse)').matches) {
+//     // touchscreen
+
+//     // @media(hover: none) and(pointer: coarse) {
+//     //     /* touchscreens */
+//     // }
+//     // @media(hover: none) and(pointer: fine) {
+//     //     /* stylus */
+//     // }
+//     // @media(hover: hover) and(pointer: coarse) {
+//     //     /* controllers */
+//     // }
+//     // @media(hover: hover) and(pointer: fine) {
+//     //     /* mouse or touchpad */
+//     // }
+// }
+
+// if (window.matchMedia('(hover: none)').matches) {
+
+video.currentBalls = vballs;
+// console.log(video.currentBalls);
+video2.currentBalls = vballsYtb;
+// console.log(video2.currentBalls);
+
+const observerMob = new IntersectionObserver(
+    function (entries) {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting === true) {
+
+                // глючило и запускало moveBalls когда секция уже была в области видимости - чтобы точно избежать такого поведения - оставляем принудительную остановку анимации 
+                stopBalls(entry.target, entry.target.currentBalls)
+                console.log(entry.target);
+                console.log('stopBalls()');
+                // чтобы успело примениться transition к шарикам (entry.target.currentBalls)
+                setTimeout(() => {
+                    moveBalls(entry.target, entry.target.currentBalls, 80, 40);
+                    // Убрать вешание листнеров в конце функций;  и вешать их  только если есть ховер
+                    console.log(entry.target);
+                    console.log('start moveBalls()');
+                }, 33);
+
+            } else {
+                stopBalls(entry.target, entry.target.currentBalls)
+                console.log(entry.target);
+                console.log('stopBalls()');
+            }
+        }
+        )
+    }
+)
+
+
+observerMob.observe(video);
+observerMob.observe(video2);
+// }
