@@ -1,0 +1,284 @@
+.footer {
+    @include sectionMt(5rem, 7rem, 12rem);
+    overflow: hidden;
+    position: relative;
+    // background-color: rgba(0, 255, 255, 0.296);
+
+    &__wrapper {
+        position: relative;
+        padding-top: 10rem;
+        // background-color: rgba(0, 255, 255, 0.178);
+    }
+
+    &__main {
+        display: flex;
+        flex-direction: column;
+        row-gap: 3rem;
+        align-items: center;
+
+        // @media ($tablet) {
+        @media (min-width:720px) {
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: start;
+            column-gap: 3rem;
+        }
+
+        @media ($tablet) {
+            column-gap: 6rem;
+        }
+
+        @media ($services) {
+            justify-content: space-between;
+        }
+
+
+    }
+
+    &__title {
+        @include h6();
+
+
+        &_cnt {
+            color: $white;
+        }
+
+        &_lnk,
+        &_frm {
+            text-shadow: 1px 1px 0 $white,
+                1px -1px 0 $white,
+                -1px 1px 0 $white,
+                -1px -1px 0 $white;
+        }
+    }
+
+    &__contacts {
+        min-width: 30rem;
+        max-width: 30rem;
+        flex-grow: 1;
+        // height: 10rem;
+        // background-color: burlywood;
+
+        color: $white;
+        text-shadow: 1px 1px 0 $blue,
+            1px -1px 0 $blue,
+            -1px 1px 0 $blue,
+            -1px -1px 0 $blue;
+
+        @media (min-width:720px) {
+            max-width: 36rem;
+        }
+
+        @media ($laptop) {
+            margin-right: 2rem;
+        }
+
+        // !!!
+        // обязательно указываем scroll-margin-top: 10rem - иначе при перемотке к якорю #contacts - блок окажется в самом верху страницы - проигнорируется padding footer__wrapper-а- и сломается расположение абсолбтно позиционированных овалов и кругов (в том числе из-за overflow:hidden у footer). Значение scroll-margin-top ребенка к которому прокручивается должно быть не меньше чем padding-top  его родителя.
+        scroll-margin-top: 10rem;
+    }
+
+    &__links {
+        width: 30rem;
+        // height: 10rem;
+        // background-color: rgb(144, 222, 135);
+
+        &-list {
+            @include p2($_color: $titleColor);
+            text-shadow: 1px 1px 0 $white,
+                1px -1px 0 $white,
+                -1px 1px 0 $white,
+                -1px -1px 0 $white;
+            line-height: 150%;
+            display: grid;
+            grid-template-columns: 7fr 4fr;
+            row-gap: 1rem;
+            column-gap: 1rem;
+            margin-top: 3rem;
+        }
+    }
+
+    &__link {
+        color: $titleColor;
+
+        &:hover {
+            text-shadow: none;
+            filter: drop-shadow(0 0 0.05rem $titleColor) hue-rotate(90deg);
+        }
+    }
+
+    &__form {
+        width: 30rem;
+        // height: 10rem;
+        // background-color: rgb(135, 142, 222);
+
+        text-shadow: 1px 1px 0 $white,
+            1px -1px 0 $white,
+            -1px 1px 0 $white,
+            -1px -1px 0 $white;
+    }
+
+    &__phone {
+        color: $white;
+
+        &:hover {
+            color: #ff7089;
+            text-shadow: 0px 0px 1px $violet,
+        }
+
+        &-cont {
+            margin-top: 3.6rem;
+            @include h5();
+            position: relative;
+            padding-left: 7rem;
+            padding-top: 2.1rem;
+            // background-color: aqua;
+        }
+
+        &-cont::before {
+            content: '\f590';
+            font-family: 'Font Awesome 6 Free';
+            color: $white;
+            font-weight: 700;
+            font-size: 4.2rem;
+            position: absolute;
+            left: 0;
+            top: 0.8rem;
+        }
+
+        &-cont::after {
+            content: 'Have questions?';
+            @include p3();
+            color: $white;
+            position: absolute;
+            top: 0;
+            left: 7rem;
+        }
+    }
+
+    &__address {
+        @include p2($_color: $white);
+        margin-top: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    &__email {
+        color: $white;
+
+        &-cont {
+            @include p2();
+            color: $white;
+        }
+    }
+
+    &__input {
+        margin-top: 3rem;
+        margin-bottom: 3rem;
+    }
+
+    &__form-text {
+        @include p2();
+    }
+
+
+    &__sub {
+        padding-left: 0;
+
+        @media ($laptop) {
+            padding-left: 40.35%; // ~ 465px/1157px
+        }
+    }
+
+    &__hr {
+        width: 9.9rem;
+        height: 0.4rem;
+        background: #E1DCFF;
+        margin: 3.3rem auto 0;
+
+        @media ($laptop) {
+            margin: 3.3rem 0 0 0;
+        }
+    }
+
+    &__copy {
+        @include p3($secColor);
+        text-shadow: 1px 1px 0 $white,
+            1px -1px 0 $white,
+            -1px 1px 0 $white,
+            -1px -1px 0 $white;
+        line-height: 168.75%;
+        text-align: center;
+        margin-top: 1.3rem;
+        margin-bottom: 9rem;
+
+        @media ($laptop) {
+            text-align: left;
+        }
+    }
+
+    &__oval {
+        @include oval(48.5rem, 121rem);
+        transform: rotate(-136deg);
+
+        &-cont {
+            position: absolute;
+            z-index: -2;
+            // display: none;
+            bottom: 46%;
+            left: 38%;
+
+            // for animation due js transform
+            transition: all 0.1s linear;
+
+            @media (min-width:720px) {
+                bottom: 27%;
+                left: 23%;
+            }
+
+            @media (min-width: 1146px) {
+                bottom: -172.5%;
+                left: -31%;
+            }
+
+        }
+
+    }
+
+    &__ball {
+        position: absolute;
+        z-index: -1;
+
+        // for animation due js transform
+        transition: all 4s linear;
+
+        &_1 {
+            @include ball(10.1rem, $blue);
+            top: 0;
+            right: 7.35%;
+        }
+
+        &_2 {
+            @include ball(6rem);
+            bottom: 18.2%;
+            right: 14.9%;
+        }
+
+        &_3 {
+            @include ball(2rem, $blue);
+            bottom: 5%;
+            right: 19%;
+        }
+
+        &_4 {
+            @include ball(14.8rem, $blue);
+            bottom: 2%;
+            right: 41%;
+
+            @media (min-width: 1146px) {
+                bottom: -20%;
+            }
+        }
+    }
+
+}

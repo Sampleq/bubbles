@@ -1,0 +1,84 @@
+.circle-button {
+    @include circle-button();
+
+    &::before {
+        content: '\f063';
+        font-family: 'Font Awesome 6 Free';
+        font-style: normal;
+        font-weight: 700;
+        transform: translate(-50%, -50%) scaleX(0.7);
+    }
+
+    &_up {
+        &::before {
+            content: '\f062';
+            font-family: 'Font Awesome 6 Free';
+            font-style: normal;
+            font-weight: 700;
+            transform: translate(-50%, -50%) scaleX(0.75);
+        }
+
+        // display: none;
+        position: fixed;
+        z-index: 100;
+        visibility: hidden;
+        opacity: 0.0;
+        transition: opacity 0.4s,
+        visibility 0.4s;
+
+        outline: $blue;
+        box-shadow: 0.2rem 0.4rem 1rem #00000077;
+
+
+        transform: scale(0.6);
+
+        right: 1rem;
+        bottom: 1rem;
+
+        &:hover {
+            // filter: hue-rotate(0);
+            box-shadow: 0 0 1rem $violet,
+                0.3rem 1.0rem 2rem #00000077;
+
+        }
+
+        @media ($tablet) {
+            transform: scale(0.7);
+            right: 1.5rem;
+            bottom: 1.5rem;
+        }
+
+        @media ($services) {
+            transform: scale(0.8);
+            right: 3.5rem;
+            bottom: 3.0rem;
+        }
+    }
+
+    // символы-иконки css требуют подгонки
+    &-play {
+        @include ball (8rem, $blue);
+        position: relative;
+        z-index: 10;
+
+        &:hover {
+            cursor: pointer;
+            filter: hue-rotate(75deg);
+        }
+
+        &::before {
+            content: '\f04b';
+            font-family: 'Font Awesome 6 Free';
+            font-style: normal;
+            font-weight: 700;
+            position: absolute;
+            color: $white;
+            font-size: 4.0rem;
+            top: 50%;
+            left: 50%;
+            transform: translate(-37%, -48%);
+        }
+
+    }
+
+}

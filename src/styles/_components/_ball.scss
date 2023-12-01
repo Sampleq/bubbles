@@ -1,0 +1,6 @@
+.ball {
+    @include ball();
+}
+.ball_2 {
+    @include ball(18.1rem, $blue);
+}

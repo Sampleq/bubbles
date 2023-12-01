@@ -1,0 +1,102 @@
+.card {
+    width: 36rem;
+    padding: 4rem 3rem;
+    border-radius: 1rem;
+    background: $white;
+    box-shadow: $boxShadow;
+    transition: transform 0.15s ease-in-out;
+    &:hover {
+        transform: scale(1.02);
+        box-shadow: 0px 0.5rem 3rem 0px #E1E4ED;
+    }
+
+    @media ($mobileM) {
+        padding: 6rem;
+    }
+
+    position: relative;
+
+    &__title {
+        @include h6();
+    }
+
+    &__hr {
+        height: 0.2rem;
+        width: 4rem;
+        background: $violet;
+        margin-top: 1.9rem;
+        margin-bottom: 0.9rem;
+    }
+
+    &__price {
+        @include h1();
+        margin-bottom: 1rem;
+
+        &::after {
+            content: '$';
+        }
+    }
+
+    &__period {
+        @include p3();
+        opacity: 0.8;
+    }
+
+    &__features {
+        margin-top: 6rem;
+        margin-bottom: 6rem;
+    }
+
+    &__feature {
+        @include p2();
+        line-height: 150%;
+        margin-bottom: 1rem;
+        opacity: 0.8;
+
+        &::before {
+            content: '\2715';
+            color: #EF7171;
+            opacity: 0.5;
+            margin-right: 1rem;
+        }
+
+        &_active {
+            opacity: 1;
+            ;
+        }
+
+        &_active::before {
+            content: '\2714';
+            opacity: 1;
+            color: $blue;
+            margin-right: 1rem;
+        }
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__btn {
+        @include btn();
+    }
+
+    &_best::after {
+        content: 'best choise';
+        position: absolute;
+        top: 6.4rem;
+        padding: 0.6rem 1rem;
+        border-radius: 13px;
+        background: #e1e4ed99;
+        color: #EF7171;
+        font-family: $titleFont;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        letter-spacing: 0.02rem;
+        text-transform: uppercase;
+    }
+
+    
+}

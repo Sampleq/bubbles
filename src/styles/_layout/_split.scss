@@ -1,0 +1,129 @@
+.split {
+    overflow: hidden;
+    // !!! to prevent horizontall scroll due  trensformed  (rotated figures and (?) images
+
+    margin-top: 6rem;
+    // background-color: rgba(0, 255, 255, 0.28);
+
+    @media ($laptop) {
+        margin-top: 12.0rem;
+    }
+
+    padding-bottom: 1.7rem;
+
+    @media ($laptop) {
+        padding-bottom: 2.4rem;
+    }
+
+    &__wrapper {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 5rem;
+
+        @media ($laptop) {
+            flex-direction: row-reverse;
+            justify-content: space-between;
+            column-gap: 7rem;
+            align-items: start;
+        }
+
+        &_man {
+            @media ($laptop) {
+                flex-direction: row;
+            }
+        }
+    }
+
+    &__text {
+        max-width: 51rem;
+        text-align: center;
+
+        @media ($laptop) {
+            text-align: left;
+        }
+    }
+
+    &__title {
+        @include h3(center);
+        margin-top: 0;
+
+        @media ($laptop) {
+            text-align: left;
+            max-width: 41.2rem;
+            margin-top: 12.1rem;
+        }
+    }
+
+    &__desc {
+        @include p2(center);
+        margin-top: 3.1rem;
+        margin-bottom: 2.8rem;
+
+        @media ($laptop) {
+            text-align: left;
+            margin-bottom: 4.8rem;
+        }
+    }
+
+    &__btn {
+        margin-right: 1rem;
+
+        @media ($mobileL) {
+            margin-right: 3rem;
+        }
+    }
+
+    &__picture {
+        position: relative;
+        // width: 95%;
+        width: auto;
+
+        @media ($tablet) {
+            width: 65%;
+            // корректируем размер изображения на вертикальном iPad-e
+        }
+
+        @media ($laptop) {
+            width: auto;
+        }
+    }
+
+    &__img {
+        max-width: 49.4rem;
+        max-height: 60.0rem;
+        width: 100%;
+        // т.к. картинка - это единственный  ребёнок у родителя &__picture без свойства position: (т.е. не выпадает из потока) - картинка  задаёт своими размерами размер всего блока &__picture
+        @include imgf();
+
+        &_man {
+            max-width: 54.5rem;
+            max-height: 74.0rem;
+        }
+    }
+
+    &__img-bg {
+        @include oval($_width: calc(100% * 36.0rem /49.4rem), $_height: calc(100% * 54.6rem / 64.2rem), $_bgcolor: $blue);
+        // указываем размеры блока фона в процентах относительно размеров родителя &__picture на макете - т.е. по факту размеров картинки &__img . Благодаря процентному заданию получаем плавное изменение размеров вместе с изменение родителя  при изменении ширины окна
+        border-radius: 25rem;
+        opacity: 0.1;
+        transform: rotate(44deg);
+
+        position: absolute;
+        top: calc(100% * 8rem / 64.2rem); // 64.2rem - высота блока
+        left: calc(100% * 5rem / 65.3rem);
+        z-index: -1;
+
+        &_man {
+            @include oval($_width: calc(100% * 36.0rem /54.5rem), $_height: calc(100% * 53.7rem / 74.0rem), $_bgcolor: $blue);
+            border-radius: 35rem;
+            top: calc(100% * 3rem / 73.9rem); // 73.9rem - высота блока
+            left: calc(100% * 9rem / 65.3rem);
+            transform: rotate(-226deg);
+        }
+    }
+
+
+
+}

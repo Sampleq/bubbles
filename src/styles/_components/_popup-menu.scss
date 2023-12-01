@@ -1,0 +1,25 @@
+.popup-menu {
+    width: 23.5rem;
+    border-radius: 1rem;
+    padding: 3rem;
+    background: $white;
+    box-shadow: $boxShadow;
+
+    z-index: 10;
+
+    &__item {
+        margin-bottom: 1rem;
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &__link {
+        @include p3();
+
+        &:hover {
+            font-weight: 700;
+            letter-spacing: -0.03rem; //чтобы жирный шрифт не так разъезжался
+        }
+    }
+}

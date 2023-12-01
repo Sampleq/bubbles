@@ -1,0 +1,63 @@
+.infocard-anim-mrg {
+    max-width: 36rem; //именно max-width чтобы могла сжиматься во FLEX-контейнере мо мобильном не создавая горизонтальной прокрутки
+    padding: 3rem 3rem 2.9rem;
+    border-radius: 1rem;
+    background: $white;
+    background: linear-gradient(27deg, #fff 16.67%, #fff 100%);
+    box-shadow: $boxShadow;
+
+    height: 22.9rem;
+    overflow: hidden;
+    transition: $smooth1;
+
+    &__icon {
+        color: $blue;
+        // text-align: center;
+        font-family: 'Font Awesome';
+        font-size: 3.2rem;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 100%;
+        // display: none;
+
+        margin-top: 0rem;
+        transition: $smooth1;
+
+    }
+
+    &__title {
+        @include h5();
+        margin: 2.9rem 0 1.9rem;
+        // transition: $smooth1;
+            // margin-top: 0.4rem;
+    }
+
+    &__text {
+        @include p2();
+        // transition: $smooth1;
+    }
+
+    &__link {
+        @include link-arr($white);
+        display: inline-block;
+        margin-top: 3rem;
+        margin-bottom: 0.4rem;
+        // transition: $smooth1;
+    }
+
+    &:hover {
+        background: $bgGradTilt;
+        // background: $blue;
+        box-shadow: $boxShadowColor;
+
+        .infocard-anim-mrg__icon {
+            margin-top: -6.2rem;
+            // color: $white;
+            opacity: 0;
+        }
+
+        .infocard-anim-mrg__title, .infocard-anim-mrg__text, .infocard-anim-mrg__link, .infocard-anim-mrg__link::after {
+            color: $white;
+        }
+    }
+}

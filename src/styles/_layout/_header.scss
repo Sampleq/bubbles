@@ -1,0 +1,176 @@
+.header {
+
+    border-bottom: 0.1rem solid lighten($color: $blue, $amount: 20%);
+    padding-bottom: 1rem;
+
+    @media ($tablet) {
+        border: none;
+        padding-bottom: 0;
+    }
+
+    &__top {
+        padding-top: 1.4rem;
+        padding-bottom: 1.7rem;
+        display: flex;
+        flex-direction: column;
+        row-gap: 1rem;
+        align-items: center;
+
+        // @media ($mobileL) {
+        @media (min-width: 575px) {
+            padding-top: 2.4rem;
+            flex-direction: row;
+            justify-content: space-between;
+            column-gap: 2rem;
+        }
+    }
+
+    &__text {
+        display: none;
+
+        // @media ($mobileL) {
+        @media (min-width: 575px) {
+            display: block;
+            @include p3($secColor);
+            text-align: center
+        }
+    }
+
+    &__phone {
+        @include p3($secColor);
+        flex-shrink: 0;
+
+        &:hover {
+            color: $blue;
+        }
+
+        &::before {
+            content: '\f095';
+            font-family: 'Font Awesome 6 Free';
+            font-style: normal;
+            font-weight: 700;
+            line-height: 125%;
+            margin-right: 0.8rem;
+        }
+    }
+
+    &__hr {
+        height: 0.1rem;
+        background: $shadColor;
+    }
+
+    &__main {
+        display: flex;
+        flex-direction: column;
+        row-gap: 0.6rem;
+        align-items: center;
+        padding-top: 1rem;
+
+        @media ($tablet) {
+            padding-top: 0;
+            flex-direction: row;
+            align-items: start;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+    }
+
+    &__logo {
+        margin-top: .6rem;
+        min-width: 3rem;
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        @media ($tablet) {
+            margin-top: 2.6rem;
+        }
+
+        &:hover {
+            cursor: pointer;
+
+            @media ($tablet) {
+                cursor: default;
+            }
+        }
+    }
+
+    // &__toggle-menu {
+    //     display: none;
+    //     @include p1();
+    //     color: $blue;
+
+    //     @media ($tablet) {
+    //         display: none;
+    //     }
+    // }
+
+    &__menu {
+        // display: none;
+
+        display: flex;
+        flex-direction: column;
+        height: 0;
+        overflow: hidden;
+        transition: height 0.3s ease-in-out;
+
+        @media ($tablet) {
+            height: auto;
+            overflow: visible;
+            display: flex;
+            flex-direction: row;
+            // flex-basis: 60rem;
+            justify-content: space-evenly;
+        }
+
+        @media ($laptop) {
+            justify-content: start;
+            flex-basis: calc(100% * 71rem / 114rem);
+            // т.к. у родителя justify-content: space-between; и меню будет располагаться по центру, а по макету должно быть левее середины и отсупать на 5.5rem от лого - через инспектор браузера подбираем flex-basis для меню - увеличиваем, пока меню не сместится влево, так чтобы оступать от лого на 5.5rem (сами пункты меню будут слева т.к justify-content: start;). И чтобы было больше адаптивности - задаём flex-basis в процентах от ширины родителя (т.е. ширины wrapper-a). При уменьшении ширины экрана - меню будет сжиматься т.к. у него flex-shrink:1 - по умочанию. Вообще можно было положить Лого и Меню в отдельный Флекс и расположить его относительно телефона. Или через сделать Гриды
+        }
+    }
+
+    &__btns {
+        margin-top: 0.5rem;
+
+        @media ($tablet) {
+            margin-top: 2.5rem;
+            flex-shrink: 0;
+        }
+    }
+
+    &__btn {
+        @include btn_light();
+    }
+
+    &__btns-or {
+        @include p3($secColor);
+        margin: 0.4rem;
+
+        @media ($laptop) {
+            margin: 0.8rem;
+        }
+    }
+}
+
+.menu-active {
+    // display: flex;
+
+    height: 24.6rem;
+    // height: 45.1rem;
+
+    @media ($tablet) {
+        flex-direction: row;
+        height: auto;
+    }
+}
+
+.menu-active_sub {
+    height: 45.1rem;
+
+    @media ($tablet) {
+        height: min-content;
+    }
+}

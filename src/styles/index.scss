@@ -1,0 +1,35 @@
+@import './_utils/';
+@import './_components/';
+@import './_layout/';
+
+.wrapper {
+    width: 96%;
+    max-width: 114rem;
+    margin: 0 auto;
+    // background-color: bisque;
+
+    @media ($laptopL) {
+        width: 100%;
+    }
+}
+
+.btn {
+    @include btn();
+}
+
+.link-arr {
+    @include link-arr();
+}
+
+.btn_light {
+    @include btn_light();
+}
+
+.img-on-bg,
+.img-bg {
+    transition: all 0.064s linear;
+}
+
+.btn_yutb {
+    filter: hue-rotate(45deg);
+}

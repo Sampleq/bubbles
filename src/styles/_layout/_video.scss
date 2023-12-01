@@ -1,0 +1,307 @@
+.video {
+    position: relative;
+    overflow: hidden; // чтобы выплывающие шарики не создавали прокрутку скроллинг
+
+    margin-top: 5rem;
+    background: $bgGradVert;
+
+    padding-top: 8rem;
+    padding-bottom: 5.9rem;
+
+    @media ($laptop) {
+        margin-top: 12rem;
+        padding-top: 14rem;
+        padding-bottom: 11.9rem;
+    }
+
+    &-cnt {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    &__btn {
+
+        &:hover {
+            // outline: $blue;
+            box-shadow: 0 0 0.5rem $violet;
+            animation: hover-btn 0.4s forwards;
+        }
+
+    }
+
+    &__title {
+        @include h3(center);
+        margin-top: 2.4rem;
+        margin-bottom: 1.9rem;
+        text-shadow: $fontShadOnGrad;
+    }
+
+    &__text {
+        @include p2(center);
+        padding: 0 1rem;
+        max-width: 43.1rem;
+        text-shadow: $fontShadOnGrad;
+    }
+
+    &__ball {
+        position: absolute;
+        z-index: -1;
+
+        transform: scale(0.35);
+
+        // for animation due js transform
+        transition: all 12s linear;
+
+        @media ($mobileL) {
+            transform: scale(0.5);
+        }
+
+        @media ($tablet) {
+            transform: scale(0.75);
+        }
+
+        @media ($laptop) {
+            transform: scale(1);
+        }
+
+        &_1 {
+            @include ball(18.1rem);
+            top: 14.2%;
+            left: 1.35%;
+        }
+
+        &_2 {
+            @include ball(5rem);
+            top: 10.2%;
+            left: 19%;
+        }
+
+        &_3 {
+            @include ball(2rem, $blue);
+            top: 57%;
+            left: 16.56%;
+        }
+
+        &_4 {
+            @include ball(3.7rem);
+            top: 10.2%;
+            right: 31.25%;
+        }
+
+        &_5 {
+            @include ball(21.5rem);
+            top: 22.7%;
+            right: -5.63%;
+        }
+
+        &_6 {
+            @include ball(5rem, $blue);
+            bottom: 17.92%;
+            right: 19.53%;
+        }
+
+        &_ytb {
+            position: absolute;
+            z-index: -1;
+            transform: scale(0.35);
+            // for animation due js transform
+            transition: all 12s linear;
+
+            @media ($mobileL) {
+                transform: scale(0.5);
+            }
+
+            @media ($tablet) {
+                transform: scale(0.75);
+            }
+
+            @media ($laptop) {
+                transform: scale(1);
+            }
+        }
+    }
+
+    &__oval {
+        @include oval(24rem, 81rem);
+        transform: scale(0.5) rotate(-136deg);
+
+        @media ($laptop) {
+            transform: rotate(-136deg);
+        }
+
+        &-cont {
+            position: absolute;
+            z-index: -2;
+
+            &_1 {
+                left: -20%;
+                bottom: -135%;
+
+                @media ($mobileL) {
+                    left: -20%;
+                    bottom: -145%;
+                }
+
+                @media ($tablet) {
+                    left: -10%;
+                    bottom: -135%;
+                }
+
+                @media ($laptop) {
+                    left: 1%;
+                    bottom: -135%;
+                }
+
+                @media ($laptopL) {
+                    left: 10%;
+                    bottom: -135%;
+                }
+            }
+
+            &_2 {
+                top: -132%;
+                right: -45%;
+
+                @media ($mobileL) {
+                    right: -30%;
+                }
+
+                @media ($tablet) {
+                    right: -15%;
+                }
+
+                @media ($laptop) {}
+
+                @media ($laptopL) {}
+            }
+        }
+    }
+
+
+    &__mov {
+        display: none;
+        flex-direction: column;
+
+        position: fixed;
+        z-index: 20;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(27deg, #6852edac 16.67%, #BA43FCac 100%);
+
+        padding: 2%;
+
+        &_2 {
+            overflow: scroll;
+        }
+
+        &:hover {
+            cursor: zoom-out;
+        }
+    }
+
+    &__clip {
+        margin: auto;
+        // min-width: 50%;
+        max-width: 94vw;
+        max-height: 90vh !important;
+        z-index: 30;
+
+        border: none; // for iframe
+
+        &_2 {
+
+            --width: 80vw;
+            min-width: var(--width);
+            min-height: calc(9 * var(--width) / 16);
+
+            @media ($mobileL) {
+                --width: 73vw;
+            }
+
+            @media ($tablet) {
+                --width: 65vw;
+            }
+
+        }
+
+        &_in {
+            animation: show-in 0.5s;
+        }
+
+        &_out {
+            animation: show-out 0.5s;
+        }
+
+        &:hover {
+            cursor: auto;
+        }
+    }
+
+    // &_anim {
+    //     animation: move 5s linear alternate infinite;        
+    // }
+
+    &__yout-btns {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+}
+
+@keyframes show-in {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    60% {
+        opacity: 0.8;
+        transform: scale(1.2);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes show-out {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    30% {
+        opacity: 0.8;
+        transform: scale(1.2);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+@keyframes hover-btn {
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1.1);
+    }
+}
+
+// @keyframes move {
+//     0%{
+//         transform: translate(0, 0);
+//     }
+//     100% {
+//         transform: translate(30rem, 10rem);
+//     }
+// }

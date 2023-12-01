@@ -1,0 +1,79 @@
+@import './_utils/';
+@import './_components/';
+@import './_layout/';
+
+// body {
+//     // padding: 2%;
+// }
+.wrapper {
+    // padding: 2%;
+    width: 96%;
+    margin: 0 auto;
+}
+
+.divider {
+    display: block;
+    height: 3rem;
+}
+.element {
+    font-size: 3rem;
+    display: block;
+    margin: 3rem;
+}
+
+.h1 {
+    @include h1();
+}
+.h2 {
+    @include h2();
+}
+.h3 {
+    @include h3();
+}
+.h4 {
+    @include h4();
+}
+.h5 {
+    @include h5();
+}
+.h6 {
+    @include h6();
+}
+
+.p1 {
+    @include p1();
+}
+.p2 {
+    @include p2();
+}
+.p3 {
+    @include p3();
+}
+
+.btn {
+    @include btn();
+}
+.link-arr {
+    @include link-arr();
+}
+.btn_light {
+    @include btn_light();
+}
+
+
+.menu-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // при таких свойствах контейнера  само меню с width: 100vw становится по центру экрана, выходя за границы родителя и игнорируя отсуп создаваемый wrapper -ом
+}
+
+.card-cont {
+display: flex;
+}
+.buttons {
+ display: flex;
+ align-items: start;
+ flex-wrap: wrap;
+ gap: 1rem;
+}

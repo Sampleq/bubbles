@@ -1,0 +1,118 @@
+.hero {
+    overflow: hidden;
+    // !!! to prevent horizontall scroll due  trensformed  (rotated figures and (?) images
+
+    margin-top: 4rem;
+    // background-color: rgba(0, 255, 255, 0.28);
+
+    @media ($laptop) {
+        margin-top: 9.7rem;
+    }
+
+    padding-bottom: 11rem;
+
+    &__wrapper {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 2rem;
+
+        @media ($laptop) {
+            flex-direction: row;
+            justify-content: space-between;
+            column-gap: 7rem;
+            align-items: start;
+        }
+    }
+
+    &__text {
+        max-width: 36rem;
+        text-align: center;
+
+        @media ($laptop) {
+            text-align: left;
+        }
+    }
+
+    &__title {
+        @include h1();
+        margin-top: 0;
+
+        @media ($laptop) {
+            margin-top: 13.6rem;
+        }
+    }
+
+    &__desc {
+        @include p1();
+        margin-top: 3.2rem;
+        margin-bottom: 4rem;
+    }
+
+    &__btn {
+        margin-right: 1rem;
+
+        @media ($mobileL) {
+            margin-right: 3rem;
+        }
+    }
+
+    &__picture {
+        position: relative;
+        // width: 95%;
+        width: auto;
+
+        @media ($tablet) {
+            width: 65%;
+            // корректируем размер изображения на вертикальном iPad-e
+        }
+
+        @media ($laptop) {
+            width: auto;
+        }
+    }
+
+    &__img {
+        max-width: 65.3rem;
+        max-height: 64.2rem;
+        width: 100%;
+        // т.к. картинка - это единственный  ребёнок у родителя &__picture без свойства position: (т.е. не выпадает из потока) - картинка  задаёт своими размерами размер всего блока &__picture
+        @include imgf();
+    }
+
+    &__img-bg {
+        @include oval($_width: calc(100% * 48.5rem /65.3rem), $_height: calc(100% * 64.2rem / 64.2rem), $_bgcolor: $blue);
+        // указываем размеры блока фона в процентах относительно размеров родителя &__picture на макете - т.е. по факту размеров картинки &__img . Благодаря процентному заданию получаем плавное изменение размеров вместе с изменение родителя  при изменении ширины окна
+        border-radius: 25rem;
+        opacity: 0.1;
+        transform: rotate(44deg);
+
+        position: absolute;
+        top: calc(100% * 8rem / 64.2rem);
+        left: calc(100% * 5rem / 65.3rem);
+        z-index: -1;
+    }
+
+
+    &__circle-button {
+        position: absolute;
+        left: 50%;
+        bottom: -11rem;
+        transform: translateX(-50%) scale(0.6);
+
+        @media ($tablet) {
+            transform: translateX(-50%) scale(0.75);
+        }
+
+        @media ($laptop) {
+            transform: scale(0.9);
+            left: 3rem;
+        }
+
+        @media ($notebook) {
+            transform: scale(1);
+        }
+
+    }
+}

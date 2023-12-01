@@ -1,0 +1,94 @@
+.services {
+    margin-top: 4rem;
+    // scroll-margin-top: 4rem; // задаём отступ при прокрутке к элементу при обращении к нему по ссылке-якорю  - задал scroll-padding-top: 4rem; для тега html
+
+    @media ($laptop) {
+        margin-top: 8rem;
+    }
+
+    &__wrapper {
+        display: flex;
+        gap: 4rem;
+        flex-direction: column-reverse;
+        align-items: center;
+
+        @media ($services) {
+            flex-direction: row;
+            justify-content: space-between;
+            width: 98% !important;
+        }
+    }
+
+    &__cards {
+        max-width: 75rem;
+        // max-width: 66%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 3rem;
+        justify-content: center;
+
+        @media (min-width: 782px) {
+            .infocard:nth-child(even) {
+                margin-top: 3rem;
+            }
+
+            ;
+        }
+    }
+
+    &__text {
+        text-align: center;
+
+        @media ($services) {
+            text-align: left;
+        }
+    }
+
+    &__title {
+        @include h2();
+
+        @media ($laptop) {
+            // max-width: 80%;
+        }
+
+        @media ($services) {
+            max-width: 33rem;
+        }
+    }
+
+    &__desc {
+        @include p2(center);
+        margin-top: 2rem;
+        margin-bottom: 1.5rem;
+
+        @media ($tablet) {
+            max-width: 80%;
+            margin: 2rem auto 1.7rem;
+        }
+
+        @media ($laptop) {
+            margin: 3rem auto 1.7rem;
+        }
+
+        @media ($services) {
+            max-width: 33rem;
+            text-align: left;
+        }
+    }
+
+    &__btn {
+        &_mobile {
+            @media ($services) {
+                display: none !important;
+            }
+        }
+
+        &_laptop {
+            display: none !important;
+
+            @media ($services) {
+                display: inline-block !important;
+            }
+        }
+    }
+}

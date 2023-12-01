@@ -1,0 +1,219 @@
+%h {
+    color: $titleColor;
+    font-family: $titleFont;
+    font-style: normal;
+    font-weight: 700;
+}
+
+@mixin h1() {
+    @extend %h;
+    font-size: 4.0rem;
+    line-height: 120%;
+
+    @media ($tablet) {
+        font-size: 5rem;
+    }
+}
+
+@mixin h2() {
+    @extend %h;
+    font-size: 3.2rem;
+    line-height: 135.294%;
+
+    @media ($tablet) {
+        font-size: 3.4rem;
+    }
+}
+
+@mixin h3($_text-align: left) {
+    @extend %h;
+    text-align: $_text-align;
+    font-size: 2.8rem;
+    line-height: 150%;
+}
+
+@mixin h4() {
+    @extend %h;
+    font-size: 2.2rem;
+    font-weight: 600;
+    line-height: 150%;
+
+    @media ($laptop) {
+        font-size: 2.3rem;
+    }
+
+    @media ($services) {
+        font-size: 2.4rem;
+    }
+}
+
+@mixin h5() {
+    @extend %h;
+    font-size: 2.2rem;
+    line-height: 150%;
+}
+
+@mixin h6() {
+    @extend %h;
+    font-size: 2.0rem;
+    font-weight: 600;
+    line-height: 150%;
+}
+
+@mixin p1 {
+    color: $mainColor;
+    font-family: $textFont;
+    font-size: 2.2rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+}
+
+@mixin p2($_text-align: left, $_color: $secColor) {
+    color: $_color;
+    font-family: $textFont;
+    font-size: 1.8rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 155.556%;
+    text-align: $_text-align;
+}
+
+@mixin p3 ($_color: $mainColor) {
+    color: $_color;
+    font-family: Nunito;
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 131.25%;
+}
+
+@mixin btn() {
+    display: inline-block;
+    color: $white;
+    text-align: center;
+    font-family: $titleFont;
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.05rem;
+    border-radius: 4rem;
+    background: $bgGradTilt;
+
+    // height: 5rem;
+    padding: 1.3rem 3rem;
+    text-decoration: none;
+
+    &:hover {
+        filter: hue-rotate(75deg);
+    }
+}
+
+@mixin link-arr ($_color: $titleColor) {
+    color: $_color;
+    font-family: $titleFont;
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%;
+
+    &::after {
+        // content: '\f178';
+        // font-family: 'FontAwesome';
+
+        content: '\2192';
+
+        font-size: 2rem;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 100%;
+
+        margin-left: 0.9rem;
+    }
+
+    &:hover {
+        filter: hue-rotate(75deg);
+        text-shadow: 0 0 0.05rem;
+    }
+}
+
+@mixin btn_light() {
+    color: $blue;
+    text-align: center;
+    font-family: $titleFont;
+    font-size: 1.4rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    letter-spacing: 0.0438rem;
+
+    padding: 0.9rem 2.5rem 0.8rem;
+    border-radius: 4rem;
+    border: 0.1rem solid $blue;
+
+    @media ($laptop) {
+        padding: 0.9rem 3rem 0.8rem;
+    }
+
+    &:hover {
+        filter: hue-rotate(75deg);
+    }
+}
+
+@mixin ball($_diametr: 5rem, $_bgcolor: $violet) {
+    width: $_diametr;
+    height: $_diametr;
+    border-radius: 50%;
+    background-color: $_bgcolor;
+
+    filter: drop-shadow(0px 0px 0.1rem rgb(245, 237, 254));
+
+}
+
+@mixin oval($_width: 20.4rem, $_height: 48.7rem, $_bgcolor: $blue) {
+    width: $_width;
+    height: $_height;
+    border-radius: calc($_width / 2);
+    background-color: $_bgcolor;
+    filter: drop-shadow(0px 0px 0.1rem rgb(245, 237, 254));
+}
+
+@mixin circle-button($_symbolcss: '\2193', $_fontsize: 5rem, $_bgcolor: $blue) {
+    @include ball (11rem, $_bgcolor);
+    position: relative;
+
+    &:hover {
+        cursor: pointer;
+        filter: hue-rotate(75deg);
+    }
+
+    &::before {
+        content: $_symbolcss;
+        position: absolute;
+        color: $white;
+        font-size: $_fontsize;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
+
+@mixin imgf() {
+    object-fit: cover;
+    object-position: center;
+}
+
+@mixin sectionMt($_ms: 6rem, $_ml: 8rem, $_lp: 14rem) {
+    margin-top: $_ms;
+
+    // scroll-margin-top: 4rem; // указал scroll-padding-top: 4rem; для тега html
+
+    @media ($mobileL) {
+        margin-top: $_ml;
+    }
+
+    @media ($laptop) {
+        margin-top: $_lp;
+    }
+}

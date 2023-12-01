@@ -1,0 +1,30 @@
+.progress {
+
+    max-width: 55.3rem;
+
+    &__desc {
+        display: flex;
+        justify-content: space-between;
+        @include p2();
+        line-height: 150%;
+    }
+    &__value::after {
+        content: '%';
+    }
+
+    &__bar-cont {
+        height: 0.6rem;
+        margin-top: 1rem;
+        border-radius: 0.25rem;
+        background: #e1e4ed99;
+        overflow: hidden;
+    }
+
+    &__bar {
+        width: 96%;
+        height: 100%;
+        border-radius: 0.25rem 0px 0px 0.25rem;
+        background: $blue;
+    }
+
+}

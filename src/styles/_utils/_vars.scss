@@ -1,0 +1,34 @@
+$white: #fff;
+$mainColor: #5B5766;
+$secColor: #716C80;
+$titleColor: #554D89;
+$shadColor: #e1e4edcc;
+$violet: #BA43FC;
+$blue: #6852ED;
+$bgGradTilt: linear-gradient(27deg, #6852ED 16.67%, #BA43FC 100%);
+$bgGradVert: linear-gradient(180deg, #6852ed1a 0%, #BA43FC1a 100%);
+
+// fonts
+$titleFont: Poppins, Arial, sans-serif;
+$textFont: Nunito;
+
+// shadows
+$boxShadow: 0px 0px 2rem 0px #E1E4ED;
+$boxShadowColor: 0px 0px 2rem 0px #6852edcc;
+$fontShadOnGrad: 1px 1px 0 rgb(245, 237, 254),
+1px -1px 0 rgb(245, 237, 254),
+-1px 1px 0 rgb(245, 237, 254),
+-1px -1px 0 rgb(245, 237, 254);
+
+// displays 
+$mobileM: 'min-width: 375px';
+$mobileL: 'min-width: 425px';
+$tablet: 'min-width: 768px';
+$laptop: 'min-width: 1024px';
+$services: 'min-width: 1160px';
+$notebook: 'min-width: 1280px';
+$laptopL: 'min-width: 1440px';
+
+// transition
+$smooth1: all 0.3s;
+

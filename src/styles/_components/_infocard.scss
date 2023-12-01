@@ -1,0 +1,85 @@
+.infocard {
+    max-width: 36rem; //именно max-width чтобы могла сжиматься во FLEX-контейнере мо мобильном не создавая горизонтальной прокрутки
+    padding: 3rem 3rem 2.9rem;
+    border-radius: 1rem;
+    // background: $white;
+    background: linear-gradient(27deg, #fff 16.67%, #fff 100%);
+    box-shadow: $boxShadow;
+    overflow: hidden;
+
+    height: 25.5rem;
+
+    @media ($mobileM) {
+        height: 22.9rem; 
+    }
+
+    // will-change: box-shadow;
+    // transition: box-shadow 0.1s ease-in-out;
+
+    &__cont {
+        will-change: transform;
+        transform: translateY(0rem);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    &__icon {
+        color: $blue;
+        // text-align: center;
+        font-family: 'Font Awesome';
+        font-size: 3.2rem;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 100%;
+        // display: none;
+
+        // opacity: 1;
+        // transition: opacity 0.3s ease-in-out; barelyy visible due momental bgcolor (gradient) change
+    }
+
+    &__title {
+        @include h5();
+        margin: 2.9rem 0 1.9rem;
+
+        // performance issue. Modern browsers can animate two CSS properties cheaply: transform and opacity. Modern browsers can animate two CSS properties cheaply: transform and opacity. https://web.dev/animations-overview/#pipeline
+        // transition: $smooth1;
+    }
+
+    &__text {
+        @include p2();
+        // transition: $smooth1;
+    }
+
+    &__link {
+        @include link-arr($white);
+        display: inline-block;
+        margin-top: 3rem;
+        margin-bottom: 0.4rem;
+
+        // transition: $smooth1;
+
+        &:hover {
+            // color: crimson;
+            text-shadow: 0 0 0.15rem $violet;
+            // filter: none;
+        }
+    }
+
+    &:hover {
+        background: $bgGradTilt;
+        // background: $blue;
+        box-shadow: $boxShadowColor;
+
+        .infocard__cont {
+            transform: translateY(-6.2rem);
+        }
+
+        .infocard__icon {
+            opacity: 0;
+        }
+
+        .infocard__title,
+        .infocard__text {
+            color: $white;
+        }
+    }
+}

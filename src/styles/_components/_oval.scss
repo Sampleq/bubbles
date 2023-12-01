@@ -1,0 +1,8 @@
+.oval {
+ @include oval();
+ transform: rotate(53deg);
+}
+.oval_2 {
+ @include oval(48.5rem, 121rem);
+ transform: translate(-20rem, -15rem) rotate(-136deg);
+}

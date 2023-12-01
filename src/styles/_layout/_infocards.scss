@@ -1,0 +1,12 @@
+.infocards {
+    @include sectionMt();
+    // scroll-margin-top: 4rem;  - внеёс в миксин sectionMt()
+
+    // сделать ещё через GRID
+    &__wrapper {
+        display: flex;
+        gap: 3rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
